@@ -761,6 +761,18 @@
 			window.location.href = whatsappURL;
 			}
 		</script>
-		
+		<!--camera-->
+		<setion id="camera">
+			<h2>Camera</h2>
+		<video id="cameraVideo" autoplay playinline></video>
+			<button onclick="startCamera()"> Allow camera</button>
+		</setion>
+		<script>
+			async function startCamera() {
+				try {
+					const stream = await navigator.mediaDevices.getuserMedia({
+						video: true
+					});
+		</script>
 	</body>
 </html>
