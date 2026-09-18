@@ -760,19 +760,40 @@
 
 			window.location.href = whatsappURL;
 			}
-		</script>
 		<!--camera-->
 		<setion id="camera">
 			<h2>Camera</h2>
-		<video id="cameraVideo" autoplay playinline></video>
-			<button onclick="startCamera()"> Allow camera</button>
-		</setion>
-		<script>
-			async function startCamera() {
-				try {
-					const stream = await navigator.mediaDevices.getuserMedia({
-						video: true
-					});
+		<video id="cameraVideo" autoplay playinline
+			style="width:100%;
+			max-width:500px; border-radius:15px;">
+		</video>
+
+			<br>
+			<button onclick="startCamera()"
+				style="padding:15px 30px; font-size:18px; cursor:pointer;">
+				📷 Allow Camera
+			</button>
+			<p id="cameraStatus"></p>
+		</section>
+			<script>
+		async function startCamera() {
+		const status = document.getElementById("cameraStatus");
+
+	try {
+		if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+		status.innerText = "camera is not supported by this browser.";
+		return;
+		}
+		const stream = await navigator.mediaDevices.getUserMedia({
+		video: true,
+		audio: false
+		});
+		document.getElementById("cameraVideo").srcObject + stream;
+		status.innerText = "✅ Camera started successfully.";
+		} catch (error) { can
+		status.innerText = "❌ camera error: " + error.message;
+		}
+		}
 		</script>
 	</body>
 </html>
